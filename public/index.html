@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clock</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript">
+      var update = function() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            data = JSON.parse(this.responseText);
+            document.querySelector('p').innerHTML = data['time'];
+          }
+        };
+        xhttp.open("GET", "/time", true);
+        xhttp.send();
+      }
+
+      update();
+      var interval = setInterval(update, 1000);
+    </script>
+  </head>
+  <body>
+    <h1>Clock</h1>
+    <p>
+      
+    </p>
+  </body>
+</html>
